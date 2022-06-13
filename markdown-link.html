@@ -1,0 +1,49 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Markdown Link to &lt;img /&gt;</title>
+    <link
+      rel="icon"
+      href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🛠</text></svg>"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      * {
+        font-family: "FiraCode Nerd Font";
+      }
+    </style>
+  </head>
+  <body class="bg-slate-100">
+    <textarea
+      id="text"
+      rows="12"
+      columns="500"
+      style="width: 1300px"
+      class="m-2 p-1 text-sm"
+    ></textarea>
+    <button
+      id="convert"
+      class="block bg-sky-500 text-white px-4 py-2 m-2 rounded-lg"
+    >
+      Convert
+    </button>
+    <div id="output" class="m-4 text-sm"></div>
+
+    <script>
+      const text = document.getElementById("text");
+      const convert = document.getElementById("convert");
+      const output = document.getElementById("output");
+
+      convert.addEventListener("click", () => {
+        const tags = text.value.match(/\(.+\)/g).map((element) => {
+          const link = element.slice(1, -1);
+          return `<img src="${link}" />`;
+        });
+
+        output.innerText = tags.join("\n");
+      });
+    </script>
+  </body>
+</html>
